@@ -87,11 +87,12 @@ Promises:
 */
 void UserApp1Initialize(void)
 {
- 
+
+
   /* If good initialization, set state to Idle */
   if( 1 )
-  {
-    UserApp1_StateMachine = UserApp1SM_Idle;
+  { 
+   UserApp1_StateMachine = UserApp1SM_Idle;
   }
   else
   {
@@ -137,12 +138,25 @@ State Machine Function Definitions
 static void UserApp1SM_Idle(void)
 {
 
+  static u16 u16BlinkCount = 0;
+  static  int a=0;
+u16BlinkCount++;
+if(u16BlinkCount == 1000)
+{
+  u16BlinkCount = (a+100);
+  a=a+100;
+  if(u16BlinkCount>=1000)
+  {u16BlinkCount=0;
+  a=0;}
+  LedToggle(PURPLE);
+}
+ 
 } /* end UserApp1SM_Idle() */
     
 #if 0
 /*-------------------------------------------------------------------------------------------------------------------*/
 /* Handle an error */
-static void UserApp1SM_Error(void)          
+static void UserApp1SM_Error(void)         
 {
   
 } /* end UserApp1SM_Error() */
